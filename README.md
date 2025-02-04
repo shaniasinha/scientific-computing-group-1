@@ -1,1 +1,3 @@
-# scientific-computing-group-1
+# Scientific Computing Group 1
+
+Project description to be updated.
