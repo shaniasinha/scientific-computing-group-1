@@ -9,6 +9,8 @@ Project description to be updated.
 *TBC* (Include instructions on how to install the project dependencies)
 
 ## Usage
+### Set 1
+To obtain the result for problem set 1, open set1.ipynb,
 
 *TBC* (Include instructions on how to use the project)
 
