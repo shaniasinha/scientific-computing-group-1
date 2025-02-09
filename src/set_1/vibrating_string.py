@@ -63,7 +63,7 @@ class VibratingString:
         plt.ylabel("Displacement")
         plt.legend()
         plt.grid()
-        plt.savefig(f"data/wave_static_{self.fig_name}.png")
+        plt.savefig(f"data/set_1/wave_static_{self.fig_name}.png")
         plt.show()
         
     def plot_dynamic_simulation(self):
@@ -87,4 +87,4 @@ class VibratingString:
         ani = animation.FuncAnimation(fig, update, frames=range(0, len(self.u), 5), interval=50, blit=True)
 
         # Save animation as an MP4 or GIF file
-        ani.save(f"data/wave_animated_{self.fig_name}.gif", writer="ffmpeg", fps=10)
+        ani.save(f"data/set_1/wave_animated_{self.fig_name}.gif", writer="ffmpeg", fps=10)
