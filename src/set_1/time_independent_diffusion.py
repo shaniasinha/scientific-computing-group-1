@@ -18,36 +18,41 @@ class TimeIndependentDifussion(TimeDependentDiffusion):
 
     def solve(self):
         """
-        Solve the Laplace equation using the Gauss-Seidel iterative method with periodic boundary conditions.
-        
+        Solve the Laplace equation using a fully vectorized (Jacobi) iteration
+        with periodic boundary conditions on the left/right edges.
+
         >>> tid = TimeIndependentDifussion(N=5, max_iter=100, tol=1e-3)  # doctest: +ELLIPSIS
         >>> tid.solve()  # doctest: +SKIP
         >>> tid.c.shape
         (5, 5)
         """
         for iteration in range(self.max_iter):
-            c_old = np.copy(self.c)
+            c_old = self.c.copy()
 
-            # Update interior points
-            for i in range(1, self.N - 1):
-                for j in range(1, self.N - 1):
-                    self.c[i, j] = 0.25 * (self.c[i+1, j] + self.c[i-1, j] +
-                                           self.c[i, j+1] + self.c[i, j-1])
+            # Vectorized update for interior points:
+            new_c = self.c.copy()  # We'll compute updates into new_c.
+            new_c[1:-1, 1:-1] = 0.25 * (c_old[2:, 1:-1] + c_old[:-2, 1:-1] +
+                                        c_old[1:-1, 2:] + c_old[1:-1, :-2])
+            # Vectorized update for left boundary (j=0) for interior rows:
+            new_c[1:-1, 0] = 0.25 * (c_old[2:, 0] + c_old[:-2, 0] +
+                                    c_old[1:-1, 1] + c_old[1:-1, -1])
+            # Vectorized update for right boundary (j=N-1) for interior rows:
+            new_c[1:-1, -1] = 0.25 * (c_old[2:, -1] + c_old[:-2, -1] +
+                                    c_old[1:-1, 0] + c_old[1:-1, -2])
 
-            # Apply periodic boundary conditions for left and right edges
-            for i in range(1, self.N - 1):
-                self.c[i, 0] = 0.25 * (self.c[i+1, 0] + self.c[i-1, 0] +
-                                       self.c[i, 1] + self.c[i, self.N-1])
-                self.c[i, self.N-1] = 0.25 * (self.c[i+1, self.N-1] + self.c[i-1, self.N-1] +
-                                              self.c[i, 0] + self.c[i, self.N-2])
+            # (If needed, one could also update top and bottom boundaries.)
+            
+            # Update the grid:
+            self.c = new_c
 
-            # Check for convergence
+            # Check for convergence:
             diff = np.linalg.norm(self.c - c_old)
             if diff < self.tol:
                 print(f"Converged after {iteration} iterations")
                 break
         else:
             print("Reached maximum iterations")
+
 
     def plot_solution(self):
         """
