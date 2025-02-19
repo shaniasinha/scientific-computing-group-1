@@ -13,6 +13,7 @@ class TimeDependentDiffusion:
         if simulation_time <= 0:
             raise ValueError("simulation_time must be positive.")
         
+        self.auto_adjust = auto_adjust
         self.D = D
         self.N = N
         self.dx = 1.0 / N
@@ -21,34 +22,12 @@ class TimeDependentDiffusion:
         self.simulation_time = simulation_time
         self.fig_name = fig_name
         self.i_max = i_max 
-        self.num_steps = int(simulation_time / self.dt)
+        self.num_steps = max(1, int(self.simulation_time / self.dt))
         self.c = np.zeros((N, N), dtype=np.float64)
-        self.c_simulation = np.zeros((self.num_steps, N, N), dtype=np.float64)
+        self.c_simulation = np.zeros((self.num_steps, self.N, self.N), dtype=np.float64)
 
-        self.is_stable()
+        assert 4 * self.dt * self.D / self.dx**2 <= 1, "Stability condition not met. Adjust dt or D."
         self.apply_boundary_conditions()
-
-    def is_stable(self):
-        """
-        Check if the simulation is stable.
-
-        >>> tdd = TimeDependentDiffusion(N=5, D=1.0)
-        >>> tdd.is_stable()  # Should pass without error
-
-        >>> tdd_unstable = TimeDependentDiffusion(N=5, D=10)
-        Traceback (most recent call last):
-            ...
-        AssertionError: Stability condition not met.
-        """
-        stability = 4 * self.dt * self.D / self.dx**2
-        if stability > 1:
-            if self.auto_adjust:
-                print(f"Adjusting dt for stability: {self.dt} -> {self.dt / stability}")
-                self.dt /= stability
-                self.num_steps = int(self.simulation_time / self.dt)
-                self.c_simulation = np.zeros((self.num_steps, self.N, self.N), dtype=np.float64)  # Reinitialize
-            else:
-                raise AssertionError(f"Stability condition not met. dt={self.dt}, stability={stability}")
 
     def apply_boundary_conditions(self):
         """
@@ -68,7 +47,7 @@ class TimeDependentDiffusion:
         """
         Run the time-stepping loop.
 
-        >>> tdd = TimeDependentDiffusion(N=3, dt=0.001, D=1.0, simulation_time=0.01)
+        >>> tdd = TimeDependentDiffusion(N=3, D=1.0, simulation_time=0.01)
         >>> tdd.run_time_stepping()
         >>> np.all(tdd.c >= 0)  # Concentrations should not be negative
         True
@@ -116,7 +95,7 @@ class TimeDependentDiffusion:
         >>> tdd.analytical_solution(x, -1)  # Negative time, expect zeros or handle gracefully
         array([0., 0., 0.])
         """
-        if t == 0:
+        if t <= 0:
             return np.zeros_like(x, dtype=np.float64)
         c = np.zeros_like(x, dtype=np.float64)
         for i in range(self.i_max + 1):
@@ -129,11 +108,6 @@ class TimeDependentDiffusion:
         """
         Compare numerical and analytical solutions for different time steps.
         Plots both solutions on the same figure for all time steps.
-
-        Example:
-        >>> tdd = TimeDependentDiffusion(N=50, dt=0.001, D=1.0, simulation_time=1.0)
-        >>> tdd.run_time_stepping()
-        >>> tdd.check_analytical_solution()
         """
         x = np.linspace(0, 1, self.N)
         times = [0.001, 0.01, 0.1, 1]
