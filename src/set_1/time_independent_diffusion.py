@@ -4,10 +4,8 @@ import numpy as np
 
 class TimeIndependentDifussion(TimeDependentDiffusion):
     def __init__(self, N, max_iter=10000, tol=1e-5):
-        # Initialize the parent class, setting dt and simulation_time to non-zero default values
-        super().__init__(N=N, dt=1.0, simulation_time=1.0, fig_name="laplace_solution")
-        
-        # Override attributes not needed for the steady-state case
+        super().__init__(N=N, simulation_time=1.0, fig_name="laplace_solution")
+    
         self.max_iter = max_iter
         self.tol = tol
         self.num_steps = 1  # No time-stepping needed
