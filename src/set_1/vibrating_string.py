@@ -38,6 +38,12 @@ class VibratingString:
     def compute_second_time_step(self):
         """
         calculate the second time step using the Taylor series expansion
+
+        >>> def psi(x): return np.sin(np.pi * x)
+        >>> vs = VibratingString(psi, 100, dt=0.001, simulation_time=0.1)
+        >>> vs.compute_second_time_step()
+        >>> vs.u[1, 50]
+        0.0004934802200549509
         """
         for i in range(1, self.N - 1):
             self.u[1, i] = self.u[0, i] + 0.5 * (self.c * self.dt / self.dx)**2 * (self.u[0, i + 1] - 2 * self.u[0, i] + self.u[0, i - 1])
@@ -45,6 +51,12 @@ class VibratingString:
     def run_time_stepping(self):
         """
         Run the time-stepping loop to compute the wave propagation over time
+
+        >>> def psi(x): return np.sin(np.pi * x)
+        >>> vs = VibratingString(psi, 100, dt=0.001, simulation_time=0.1)
+        >>> vs.run_time_stepping()
+        >>> vs.u[-1, 50]
+        -0.0004934802200549509
         """
         for t in range(1, len(self.u) - 1):
             for i in range(1, self.N - 1):
@@ -53,17 +65,32 @@ class VibratingString:
     def plot_static_simulation(self):
         """
         Plot the wave propagation over time using matplotlib static plot
+        with a colormap for each time step and decreasing line thickness.
         """
-        plt.figure(figsize=(10, 6))
-        for t in range(0, len(self.u), int(len(self.u) / 10)): 
-            plt.plot(self.x, self.u[t, :], label=f"t = {t * self.dt:.3f}s")
+        plt.figure(figsize=(8, 6))
+        
+        colormap = plt.cm.plasma
+        num_steps = 10
+        step_size = int(len(self.u) / num_steps)
+        norm = plt.Normalize(vmin=0, vmax=num_steps)
+        
+        # Plot each time step with a color from the colormap and decreasing line thickness
+        for i, t in enumerate(range(0, len(self.u), step_size)):
+            color = colormap(norm(i))
+            line_width = 5 * (1 - i / num_steps) + 2 
+            plt.plot(self.x, self.u[t, :], color=color, alpha=1, linewidth=line_width, label=f"t = {t * self.dt:.3f}s")
+        
+        # Add the last step to the plot
+        color = colormap(norm(num_steps))
+        line_width = 1
+        plt.plot(self.x, self.u[-1, :], color=color, alpha=1, linewidth=line_width, label=f"t = {self.simulation_time:.3f}s")
 
         plt.title("Wave Propagation Over Time")
         plt.xlabel("Position along the string")
         plt.ylabel("Displacement")
-        plt.legend()
-        plt.grid()
-        plt.savefig(f"results/set_1/wave/wave_static_{self.fig_name}.png")
+        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        plt.tight_layout()
+        plt.savefig(f"results/set_1/wave/wave_static_{self.fig_name}.png", dpi=200)
         plt.show()
         
     def plot_dynamic_simulation(self):
