@@ -2,7 +2,7 @@ from src.set_1.time_dependent_diffusion import TimeDependentDiffusion
 from matplotlib import pyplot as plt
 import numpy as np
 
-class TimeIndependentDiffusion(TimeDependentDiffusion):
+class SORIteration(TimeDependentDiffusion):
     def __init__(self, N, max_iter=10000, tol=1e-5):
         """
         Initialize the time-independent diffusion (Laplace solver) object.
@@ -11,14 +11,15 @@ class TimeIndependentDiffusion(TimeDependentDiffusion):
         >>> tid.c.shape
         (5, 5)
         """
-        super().__init__(N=N, simulation_time=1.0, fig_name="laplace_solution")
+        #TODO: Change doctest to reflect the new class name
+        super().__init__(N=N, simulation_time=1.0, fig_name="sor_solution")
         self.max_iter = max_iter
         self.tol = tol
         self.num_steps = 1  # No time-stepping needed
 
-    def solve(self):
+    def solve(self, omega=1.5):
         """
-        Solve the Laplace equation using a fully vectorized (Jacobi) iteration
+        Solve the Laplace equation using a fully vectorized (Successive Over-Relaxation) iteration
         with periodic boundary conditions on the left/right edges.
 
         >>> tid = TimeIndependentDifussion(N=5, max_iter=100, tol=1e-3)  # doctest: +ELLIPSIS
@@ -27,23 +28,24 @@ class TimeIndependentDiffusion(TimeDependentDiffusion):
         (5, 5)
         """
         for iteration in range(self.max_iter):
-            c_old = self.c.copy()
+            c_old = self.c.copy()   # Store old values for convergence check
 
-            # Vectorized update for interior points:
-            new_c = self.c.copy()  # We'll compute updates into new_c.
-            new_c[1:-1, 1:-1] = 0.25 * (c_old[2:, 1:-1] + c_old[:-2, 1:-1] +
-                                        c_old[1:-1, 2:] + c_old[1:-1, :-2])
-            # Vectorized update for left boundary (j=0) for interior rows:
-            new_c[1:-1, 0] = 0.25 * (c_old[2:, 0] + c_old[:-2, 0] +
-                                    c_old[1:-1, 1] + c_old[1:-1, -1])
-            # Vectorized update for right boundary (j=N-1) for interior rows:
-            new_c[1:-1, -1] = 0.25 * (c_old[2:, -1] + c_old[:-2, -1] +
-                                    c_old[1:-1, 0] + c_old[1:-1, -2])
-
+            for i in range(1, self.N-1):
+                for j in range(1, self.N-1):
+                    # implement the non-vectorized versioon of the update
+                    self.c[i, j] = (1 - omega) * self.c[i, j] + omega * 0.25 * (
+                        self.c[i+1, j] + self.c[i-1, j] + self.c[i, j+1] + self.c[i, j-1]
+                    )
+                    # implement the non-vectorized version of the update for the left boundary (j=0) for interior rows
+                    self.c[i, 0] = (1 - omega) * self.c[i, 0] + omega * 0.25 * (
+                        self.c[i+1, 0] + self.c[i-1, 0] + self.c[i, 1] + self.c[i, -1]
+                    )
+                    # implement the non-vectorized version of the update for the right boundary (j=N-1) for interior rows
+                    self.c[i, -1] = (1 - omega) * self.c[i, -1] + omega * 0.25 * (
+                        self.c[i+1, -1] + self.c[i-1, -1] + self.c[i, 0] + self.c[i, -2]
+                    )
+                    
             # (If needed, one could also update top and bottom boundaries.)
-            
-            # Update the grid:
-            self.c = new_c
 
             # Check for convergence:
             diff = np.linalg.norm(self.c - c_old)
