@@ -27,6 +27,9 @@ class GaussSeidelIteration(TimeDependentDiffusion):
         >>> tid.c.shape
         (5, 5)
         """
+        # Track iteration number and previous diff for convergence check
+        iterations = []
+        diffs = []
         for iteration in range(self.max_iter):
             c_old = self.c.copy()
 
@@ -40,15 +43,20 @@ class GaussSeidelIteration(TimeDependentDiffusion):
             self.c[1:-1, -1] = 0.25 * (self.c[2:, -1] + self.c[:-2, -1] +
                                     self.c[1:-1, 0] + self.c[1:-1, -2])
 
-            # (If needed, one could also update top and bottom boundaries.)
-
             # Check for convergence:
             diff = np.linalg.norm(self.c - c_old)
+
+            # Append iteration number and diff for convergence check
+            iterations.append(iteration)
+            diffs.append(diff)
+            
+            # Break if converged
             if diff < self.tol:
                 print(f"Converged after {iteration} iterations")
-                break
+                return iterations, self.c, diffs
         else:
             print("Reached maximum iterations")
+            return iterations, self.c, diffs
 
 
     def plot_solution(self):
@@ -58,7 +66,9 @@ class GaussSeidelIteration(TimeDependentDiffusion):
         plt.figure(figsize=(8, 8))
         plt.imshow(self.c, extent=[0, 1, 0, 1], origin='lower', cmap='hot')
         plt.colorbar(label='Concentration')
-        plt.title('Solution of the Laplace Equation')
-        plt.xlabel('x')
-        plt.ylabel('y')
+        plt.title('Gaiss-Seidel Iteration', fontsize=18, fontweight='bold')
+        plt.xlabel('x', fontsize=16)
+        plt.ylabel('y', fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
         plt.show()

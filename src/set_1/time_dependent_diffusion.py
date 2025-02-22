@@ -127,12 +127,14 @@ class TimeDependentDiffusion:
             error = np.abs(numerical - analytical)
             print(f"Maximum error at t = {t:.3f}s: {np.max(error):.5f}")
 
-        plt.title("Comparison of Analytical and Numerical Solutions")
-        plt.xlabel("x")
-        plt.ylabel("Concentration (c)")
+        plt.title("Comparison of Analytical and Numerical Solutions", fontsize=18, fontweight="bold")
+        plt.xlabel("x", fontsize=16)
+        plt.ylabel("Concentration (c)", fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
         plt.legend()
         plt.grid()
-        plt.savefig(f"results/set_1/difussion/{self.fig_name}_analytical_vs_numerical.png")
+        plt.savefig(f"results/set_1/diffusion/{self.fig_name}_analytical_vs_numerical.png")
         plt.show()
 
     def write_data(self, timestep):
@@ -142,15 +144,15 @@ class TimeDependentDiffusion:
         df = pd.DataFrame(self.c.flatten()).T
         df['timestep'] = timestep  
         if timestep == 0:
-            df.to_csv(f"results/set_1/difussion/{self.fig_name}.csv", index=False, mode='w', header=True)
+            df.to_csv(f"results/set_1/diffusion/{self.fig_name}.csv", index=False, mode='w', header=True)
         else:
-            df.to_csv(f"results/set_1/difussion/{self.fig_name}.csv", index=False, mode='a', header=False)
+            df.to_csv(f"results/set_1/diffusion/{self.fig_name}.csv", index=False, mode='a', header=False)
 
     def read_data(self):
         """
         Read the data from a CSV file
         """
-        df = pd.read_csv(f"results/set_1/difussion/{self.fig_name}.csv")
+        df = pd.read_csv(f"results/set_1/diffusion/{self.fig_name}.csv")
         timesteps = df['timestep'].unique()
         self.c_simulation = np.zeros((len(timesteps), self.N, self.N))
         for timestep in timesteps:
@@ -170,10 +172,12 @@ class TimeDependentDiffusion:
         plt.figure(figsize=(8, 8))
         plt.imshow(concentration, extent=[0, 1, 0, 1], origin='lower', cmap='hot')
         plt.colorbar(label='Concentration')
-        plt.title(f'Concentration at t = {actual_time:.2f}s') 
-        plt.xlabel('x')
-        plt.ylabel('y')
-        plt.savefig(f"results/set_1/difussion/{self.fig_name}_{timestep}.png")  
+        plt.title(f'Concentration at t = {actual_time:.2f}s', fontsize=18, fontweight="bold") 
+        plt.xlabel('x', fontsize=16)
+        plt.ylabel('y', fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
+        plt.savefig(f"results/set_1/diffusion/{self.fig_name}_{timestep}.png")  
         plt.show()
 
     def create_animation(self, frame_skip=100):
@@ -201,7 +205,7 @@ class TimeDependentDiffusion:
     
         num_frames = len(self.c_simulation) // frame_skip
         ani = animation.FuncAnimation(fig, update, frames=num_frames, interval=50, blit=True)
-        ani.save(f"results/set_1/difussion/difussion_animation{self.fig_name}.gif", writer="ffmpeg", fps=20)
+        ani.save(f"results/set_1/diffusion/diffusion_animation{self.fig_name}.gif", writer="ffmpeg", fps=20)
         plt.close()
 
     def create_subplot_log_time(self):
@@ -209,20 +213,24 @@ class TimeDependentDiffusion:
         Create 5x1 subplot, each showing the concentration at a different time step
         timestep = 0, 0.001, 0.01, 0.1, 1
         """
-        fig, axs = plt.subplots(1, 5 , figsize=(20, 4))
+        fig, axs = plt.subplots(1, 5 , figsize=(20, 5), sharey=True)
         time_steps = [0, 0.001, 0.01, 0.1, 1]
         
         for i, ax in enumerate(axs):
             timestep_index = min(int(time_steps[i] / self.dt), len(self.c_simulation) - 1)
             if timestep_index < len(self.c_simulation):
                 ax.imshow(self.c_simulation[timestep_index], extent=[0, 1, 0, 1], origin='lower', cmap='hot')
-                ax.set_title(f'Time = {time_steps[i]:.3f}s')
-                ax.set_xlabel('x')
-                ax.set_ylabel('y')
+                ax.set_title(f'Time = {time_steps[i]:.3f}s', fontsize=18, fontweight="bold")
+                ax.set_xlabel('x', fontsize=16)
+                if i == 0:
+                    ax.set_ylabel('y', fontsize=16)
+                ax.tick_params(axis='both', which='both', labelsize=14)
             else:
-                ax.set_title(f'Time = {time_steps[i]:.3f}s (out of range)')
-                ax.set_xlabel('x')
-                ax.set_ylabel('y')
+                ax.set_title(f'Time = {time_steps[i]:.3f}s (out of range)', fontsize=18, fontweight="bold")
+                ax.set_xlabel('x', fontsize=16)
+                if i == 0:
+                    ax.set_ylabel('y', fontsize=16)
+                ax.tick_params(axis='both', which='both', labelsize=14)
         plt.tight_layout()
-        plt.savefig(f"results/set_1/difussion/{self.fig_name}_subplots.png")
+        plt.savefig(f"results/set_1/diffusion/{self.fig_name}_subplots.png")
         plt.show()

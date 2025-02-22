@@ -11,7 +11,7 @@ class SORIteration(TimeDependentDiffusion):
         >>> tid.c.shape
         (5, 5)
         """
-        #TODO: Change doctest to reflect the new class name
+        # TODO: Change doctest to reflect the new class name
         super().__init__(N=N, simulation_time=1.0, fig_name="sor_solution")
         self.max_iter = max_iter
         self.tol = tol
@@ -51,9 +51,11 @@ class SORIteration(TimeDependentDiffusion):
             diff = np.linalg.norm(self.c - c_old)
             if diff < self.tol:
                 print(f"Converged after {iteration} iterations")
-                break
+                return iteration, self.c
+                # break
         else:
             print("Reached maximum iterations")
+            return self.max_iter, self.c
 
 
     def plot_solution(self):
@@ -63,7 +65,9 @@ class SORIteration(TimeDependentDiffusion):
         plt.figure(figsize=(8, 8))
         plt.imshow(self.c, extent=[0, 1, 0, 1], origin='lower', cmap='hot')
         plt.colorbar(label='Concentration')
-        plt.title('Solution of the Laplace Equation')
-        plt.xlabel('x')
-        plt.ylabel('y')
+        plt.title('Successive Over-Relaxation Solution', fontsize=18, fontweight='bold')
+        plt.xlabel('x', fontsize=16)
+        plt.ylabel('y', fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
         plt.show()
