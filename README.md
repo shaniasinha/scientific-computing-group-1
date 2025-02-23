@@ -64,8 +64,8 @@ complex_systems_networked/
 ## Contributing
 
 ### Set 1:
-<div align="center">
-    <img src="misc/fame_set1.png" alt="Git fame" width="300"/>
+<div align="left">
+    <img src="misc/fame_set1.png" alt="Git fame" width="600"/>
 </div>
 
 ### Set 2:
