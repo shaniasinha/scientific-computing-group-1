@@ -46,8 +46,8 @@ class GaussSeidelIteration(TimeDependentDiffusion):
         Solve the Laplace equation using a Numba-optimized Gauss-Seidel iteration.
         """
         iterations, c, diffs = numba_gauss_seidel(self.c, self.N, self.max_iter, self.tol)
-        if iterations[-1] < self.max_iter:
-            # print(f"Converged after {iterations[-1]} iterations")
+        if len(iterations) < self.max_iter:
+            # print(f"Converged after {len(iterations)} iterations")
             return iterations, c, diffs
         else:
             print("Reached maximum iterations")

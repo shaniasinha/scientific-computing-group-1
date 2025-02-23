@@ -22,32 +22,34 @@ To run this project locally, follow these steps:
 ## Usage
 ### Set 1:
 - Open `set1.ipynb` in Jupyter Notebook for problem set 1.
+- Follow the steps outlined in the notebook to run simulations and re-create the results.
 
 ### Set 2:
-- TBC
+- To be updated in the future.
 
 ### Set 3:
-- TBC
-
-- Follow the steps outlined in the notebook to run simulations and re-create the results.
+- To be updated in the future.
 
 ## Project Structure
 ```
-complex_systems_networked/
+scientific-computing-group-1/
 │-- set1.ipynb                                          # Jupyter notebook to run all code related to problem set 1
 │-- requirements.txt                                    # Dependencies
 │
 │-- src/                                                # Contains all classes and functions imported in the notebook
 │   │-- set_1/
-│       │-- vibratin_string.py
+│       │-- vibrating_string.py
 │       │-- time_dependent_diffusion.py 
 │       │-- jacobi_iteration.py
 │       │-- jacobi_iteration_optimized.py [*]
 │       │-- jacobi_with_sinks.py
+│       │-- jacobi_with_insulation.py
 │       │-- gauss_seidel_iteration.py
 │       │-- gauss_seidel_iteration_optimized.py [*]
+│       │-- gauss_seidel_with_sinks.py
 │       │-- succesive_over_relaxation.py
 │       │-- succesive_over_relaxation_optimized.py [*]
+│       │-- successive_over_relaxation_with_sinks.py
 │
 │-- results/                                            # Final State Network data files 
 │   │-- set1/ *
@@ -56,7 +58,7 @@ complex_systems_networked/
 │       │-- numerical_methods/
 │
 │-- misc/                                               # Contains the problem set handout file and git fame results
-│-- archive/                                            # Earlier implementations that could be usefull for later problem sets
+│-- archive/                                            # Earlier implementations that could be useful for later problem sets
 
 ```
 [*] `_optimized` contain numba implementation for parallel processing.

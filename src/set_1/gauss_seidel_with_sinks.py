@@ -4,13 +4,12 @@ from src.set_1.time_dependent_diffusion import TimeDependentDiffusion
 from matplotlib import pyplot as plt
 
 @njit
-def numba_jacobi_sink(c, N, max_iter, tol, object):
+def numba_gauss_seidel(c, N, max_iter, tol, object):
     """
-    Perform the Jacobi iteration using Numba for speed-up, with fixed sinks.
+    Perform the Gauss-Seidel iteration using Numba for speed-up, with fixed sinks.
     """
     iterations = []
     diffs = []
-    c_new = c.copy()  # Temporary array for updates
     
     for iteration in range(max_iter):
         c_old = c.copy()
@@ -18,25 +17,21 @@ def numba_jacobi_sink(c, N, max_iter, tol, object):
         # Interior points update
         for i in range(1, N-1):
             for j in range(1, N-1):
-                if object[i, j] == 0:  # Only update if not in a sink/insulated region
-                    c_new[i, j] = 0.25 * (c_old[i+1, j] + c_old[i-1, j] + c_old[i, j+1] + c_old[i, j-1])
+                if object[i, j] == 0:  # Only update if not in a sink region
+                    c[i, j] = 0.25 * (c[i+1, j] + c[i-1, j] + c[i, j+1] + c[i, j-1])
 
             # Periodic boundary conditions
-            c_new[i, 0] = 0.25 * (c_old[i+1, 0] + c_old[i-1, 0] + c_old[i, 1] + c_old[i, -1])
-            c_new[i, -1] = 0.25 * (c_old[i+1, -1] + c_old[i-1, -1] + c_old[i, 0] + c_old[i, -2])
-
-        # Enforce sinks with explicit loop
+            c[i, 0] = 0.25 * (c[i+1, 0] + c[i-1, 0] + c[i, 1] + c[i, -1])
+            c[i, -1] = 0.25 * (c[i+1, -1] + c[i-1, -1] + c[i, 0] + c[i, -2])
+        
+        # Enforce sinks
         for i in range(N):
             for j in range(N):
                 if object[i, j] == 1:
-                    c_new[i, j] = 0
-        
-        # Swap arrays for next iteration
-        c[:] = c_new
+                    c[i, j] = 0  # Sink values remain zero
 
         # Convergence check
         diff = np.linalg.norm(c - c_old)
-
         iterations.append(iteration)
         diffs.append(diff)
         
@@ -45,9 +40,9 @@ def numba_jacobi_sink(c, N, max_iter, tol, object):
 
     return iterations, c, diffs  # Reached max iterations
 
-class JacobiIterationSinks(TimeDependentDiffusion):
+class GaussSeidelIterationSinks(TimeDependentDiffusion):
     def __init__(self, N, max_iter=10000, tol=1e-5, activated_objects=[]):
-        super().__init__(N=N, simulation_time=1.0, fig_name="jacobi_solution")
+        super().__init__(N=N, simulation_time=1.0, fig_name="gauss_seidel_solution")
         self.max_iter = max_iter
         self.tol = tol
         self.num_steps = 1  # No time-stepping needed
@@ -131,13 +126,12 @@ class JacobiIterationSinks(TimeDependentDiffusion):
                             self.object[i, j] = 1
                         if (i - circle_center[0])**2 + (j - circle_center[1] - N)**2 < circle_radius**2:
                             self.object[i, j] = 1
-
     
     def solve(self):
         """
-        Solve the Laplace equation using a Numba-optimized Jacobi iteration with sinks.
+        Solve the Laplace equation using a Numba-optimized Gauss-Seidel iteration with sinks.
         """
-        iterations, c, diffs = numba_jacobi_sink(self.c, self.N, self.max_iter, self.tol, self.object)
+        iterations, c, diffs = numba_gauss_seidel(self.c, self.N, self.max_iter, self.tol, self.object)
         
         if len(iterations) < self.max_iter:
             print(f"Converged after {len(iterations)} iterations")
@@ -145,7 +139,7 @@ class JacobiIterationSinks(TimeDependentDiffusion):
         else:
             print("Reached maximum iterations")
             return iterations, c, diffs
-    
+
     def plot_solution(self):
         """
         Plot the solution of the Laplace equation.
@@ -153,10 +147,10 @@ class JacobiIterationSinks(TimeDependentDiffusion):
         plt.figure(figsize=(8, 8))
         plt.imshow(self.c, extent=[0, 1, 0, 1], origin='lower', cmap='hot')
         plt.colorbar(label='Concentration')
-        plt.title(f"Jacobi with Sink(s) (N = {self.N})", fontsize=18, fontweight='bold')
+        plt.title(f"Gauss-Seidel with Sink(s) (N = {self.N})", fontsize=18, fontweight='bold')
         plt.xlabel('x', fontsize=16)
         plt.ylabel('y', fontsize=16)
         plt.xticks(fontsize=14)
         plt.yticks(fontsize=14)
-        plt.savefig(f"results/set_1/numerical_methods/jacobi_with_sinks_N_{self.N}.png")
+        plt.savefig(f"results/set_1/numerical_methods/gs_with_sinks_N_{self.N}.png")
         plt.show()

@@ -1,59 +1,66 @@
 from numba import njit
-import numpy as np
 from src.set_1.time_dependent_diffusion import TimeDependentDiffusion
 from matplotlib import pyplot as plt
+import numpy as np 
 
 @njit
-def numba_jacobi_sink(c, N, max_iter, tol, object):
+def numba_sor(c, N, omega, max_iter, tol, object):
     """
-    Perform the Jacobi iteration using Numba for speed-up, with fixed sinks.
+    Perform the Successive Over-Relaxation (SOR) iteration with periodic boundary conditions,
+    optimized with Numba.
     """
+    # Track iteration number and previous diff for convergence check
     iterations = []
     diffs = []
-    c_new = c.copy()  # Temporary array for updates
-    
     for iteration in range(max_iter):
         c_old = c.copy()
 
-        # Interior points update
         for i in range(1, N-1):
             for j in range(1, N-1):
-                if object[i, j] == 0:  # Only update if not in a sink/insulated region
-                    c_new[i, j] = 0.25 * (c_old[i+1, j] + c_old[i-1, j] + c_old[i, j+1] + c_old[i, j-1])
+                if object[i, j] == 0:  # Only update if not in a sink region
+                    c[i, j] = (1 - omega) * c[i, j] + omega * 0.25 * (
+                        c[i+1, j] + c[i-1, j] + c[i, j+1] + c[i, j-1]
+                    )
 
             # Periodic boundary conditions
-            c_new[i, 0] = 0.25 * (c_old[i+1, 0] + c_old[i-1, 0] + c_old[i, 1] + c_old[i, -1])
-            c_new[i, -1] = 0.25 * (c_old[i+1, -1] + c_old[i-1, -1] + c_old[i, 0] + c_old[i, -2])
+            c[i, 0] = (1 - omega) * c[i, 0] + omega * 0.25 * (
+                c[i+1, 0] + c[i-1, 0] + c[i, 1] + c[i, -1]
+            )
+            c[i, -1] = (1 - omega) * c[i, -1] + omega * 0.25 * (
+                c[i+1, -1] + c[i-1, -1] + c[i, 0] + c[i, -2]
+            )
 
-        # Enforce sinks with explicit loop
+        # Enforce sinks
         for i in range(N):
             for j in range(N):
                 if object[i, j] == 1:
-                    c_new[i, j] = 0
-        
-        # Swap arrays for next iteration
-        c[:] = c_new
+                    c[i, j] = 0  # Sink values remain zero
 
-        # Convergence check
+        # Check for convergence:
         diff = np.linalg.norm(c - c_old)
 
+        # Append iteration number and diff for convergence check
         iterations.append(iteration)
         diffs.append(diff)
-        
+
+        # Break if converged
         if diff < tol:
             return iterations, c, diffs  # Converged
 
     return iterations, c, diffs  # Reached max iterations
 
-class JacobiIterationSinks(TimeDependentDiffusion):
+class SORIterationSinks(TimeDependentDiffusion):
     def __init__(self, N, max_iter=10000, tol=1e-5, activated_objects=[]):
-        super().__init__(N=N, simulation_time=1.0, fig_name="jacobi_solution")
+        """
+        Initialize the time-independent diffusion (Laplace solver) object.
+        """
+        super().__init__(N=N, simulation_time=1.0, fig_name="sor_solution")
         self.max_iter = max_iter
         self.tol = tol
         self.num_steps = 1  # No time-stepping needed
         self.object = np.zeros((N, N), dtype=np.int32)
         self.add_sinks(activated_objects)
-    
+
     def add_sinks(self, activated_objects=[]):
         """
         Define three rectangular sink regions with zero concentration.
@@ -132,20 +139,20 @@ class JacobiIterationSinks(TimeDependentDiffusion):
                         if (i - circle_center[0])**2 + (j - circle_center[1] - N)**2 < circle_radius**2:
                             self.object[i, j] = 1
 
-    
-    def solve(self):
+    def solve(self, omega=1.8):
         """
-        Solve the Laplace equation using a Numba-optimized Jacobi iteration with sinks.
+        Solve the Laplace equation using Numba-optimized Successive Over-Relaxation.
         """
-        iterations, c, diffs = numba_jacobi_sink(self.c, self.N, self.max_iter, self.tol, self.object)
+        iterations, _, diffs = numba_sor(self.c, self.N, omega, self.max_iter, self.tol, self.object)
         
         if len(iterations) < self.max_iter:
             print(f"Converged after {len(iterations)} iterations")
-            return iterations, c, diffs
+            return iterations, self.c, diffs
         else:
             print("Reached maximum iterations")
-            return iterations, c, diffs
-    
+            return iterations, self.c, diffs
+        return None
+
     def plot_solution(self):
         """
         Plot the solution of the Laplace equation.
@@ -153,10 +160,10 @@ class JacobiIterationSinks(TimeDependentDiffusion):
         plt.figure(figsize=(8, 8))
         plt.imshow(self.c, extent=[0, 1, 0, 1], origin='lower', cmap='hot')
         plt.colorbar(label='Concentration')
-        plt.title(f"Jacobi with Sink(s) (N = {self.N})", fontsize=18, fontweight='bold')
+        plt.title(f"SOR with Sink(s) (N = {self.N})", fontsize=18, fontweight='bold')
         plt.xlabel('x', fontsize=16)
         plt.ylabel('y', fontsize=16)
         plt.xticks(fontsize=14)
         plt.yticks(fontsize=14)
-        plt.savefig(f"results/set_1/numerical_methods/jacobi_with_sinks_N_{self.N}.png")
+        plt.savefig(f"results/set_1/numerical_methods/sor_with_sinks_N_{self.N}.png")
         plt.show()

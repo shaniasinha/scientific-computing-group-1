@@ -50,8 +50,8 @@ class JacobiIteration(TimeDependentDiffusion):
         Solve the Laplace equation using a Numba-optimized Jacobi iteration.
         """
         iterations, c, diffs = numba_jacobi(self.c, self.N, self.max_iter, self.tol)
-        if iterations[-1] < self.max_iter:
-            # print(f"Converged after {iterations[-1]} iterations")
+        if len(iterations) < self.max_iter:
+            # print(f"Converged after {len(iterations)} iterations")
             return iterations, c, diffs
         else:
             print("Reached maximum iterations")
@@ -65,9 +65,10 @@ class JacobiIteration(TimeDependentDiffusion):
         plt.figure(figsize=(8, 8))
         plt.imshow(self.c, extent=[0, 1, 0, 1], origin='lower', cmap='hot')
         plt.colorbar(label='Concentration')
-        plt.title('Jacobi Iteration Solution', fontsize=18, fontweight='bold')
+        plt.title(f"Jacobi Iteration (N = {self.N})", fontsize=18, fontweight='bold')
         plt.xlabel('x', fontsize=16)
         plt.ylabel('y', fontsize=16)
         plt.xticks(fontsize=14)
         plt.yticks(fontsize=14)
+        plt.savefig(f"results/set_1/numerical_methods/jacobi_iteration_N_{self.N}.png")
         plt.show()

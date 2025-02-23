@@ -62,8 +62,8 @@ class SORIteration(TimeDependentDiffusion):
         Solve the Laplace equation using Numba-optimized Successive Over-Relaxation.
         """
         iterations, _, diffs = numba_sor(self.c, self.N, omega, self.max_iter, self.tol)
-        if iterations[-1] < self.max_iter:
-            # print(f"Converged after {iterations[-1]} iterations")
+        if len(iterations) < self.max_iter:
+            # print(f"Converged after {len(iterations)} iterations")
             return iterations, self.c, diffs
         else:
             print("Reached maximum iterations")
