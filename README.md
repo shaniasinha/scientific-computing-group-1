@@ -29,7 +29,8 @@ To run this project locally, follow the steps below (replace [n] with the set nu
 - Follow the steps outlined in the notebook to run simulations and re-create the results.
 
 ### Set 3:
-- To be updated in the future.
+- Open `set2.ipynb` in Jupyter Notebook for problem set 2.
+- Follow the steps outlined in the notebook to run simulations and re-create the results.
 
 ## Project Structure
 ### Set 1:
@@ -82,7 +83,24 @@ scientific-computing-group-1/
 ```
 
 ### Set 3:
-- To be updated in the future.
+```
+scientific-computing-group-1/
+│-- set_2/
+   │-- set2.ipynb                                      # Jupyter notebook to run all code related to problem set 2
+   │-- requirements.txt                                # Dependencies
+   │-- src/                                            # Contains all classes and functions imported in the notebook
+   │   │-- analysis_dla.py
+   │   │-- dla.py
+   │   │-- monte_carlo_dla.py
+   │   │-- gray_scott.py
+   │-- results/                                        # Plots and animations 
+   │   │-- dla_growth/
+   │   │-- dla_mc/
+   │   │-- gray_scott/
+   │-- misc/                                           # Contains the git fame results
+   │   │-- archive/                                    # Earlier implementations that could be useful for later
+
+```
 
 ## Contributing
 
@@ -97,7 +115,9 @@ scientific-computing-group-1/
 </div>
 
 ### Set 3:
-- To be updated in the future.
+<div align="left">
+    <img src="set_3/misc/git-fame.png" alt="Git fame set 3" width="600"/>
+</div>
 
 ## Authors
 - Myriam Belkhatir
