@@ -1,0 +1,354 @@
+%% Creator: Matplotlib, PGF backend
+%%
+%% To include the figure in your LaTeX document, write
+%%   \input{<filename>.pgf}
+%%
+%% Make sure the required packages are loaded in your preamble
+%%   \usepackage{pgf}
+%%
+%% Also ensure that all the required font packages are loaded; for instance,
+%% the lmodern package is sometimes necessary when using math font.
+%%   \usepackage{lmodern}
+%%
+%% Figures using additional raster images can only be included by \input if
+%% they are in the same directory as the main LaTeX file. For loading figures
+%% from other directories you can use the `import` package
+%%   \usepackage{import}
+%%
+%% and then include the figures with
+%%   \import{<path to file>}{<filename>.pgf}
+%%
+%% Matplotlib used the following preamble
+%%   \def\mathdefault#1{#1}
+%%   \everymath=\expandafter{\the\everymath\displaystyle}
+%%   
+%%   \ifdefined\pdftexversion\else  % non-pdftex case.
+%%     \usepackage{fontspec}
+%%     \setmainfont{DejaVuSerif.ttf}[Path=\detokenize{/Users/salomepoulain/Library/Python/3.9/lib/python/site-packages/matplotlib/mpl-data/fonts/ttf/}]
+%%     \setsansfont{DejaVuSans.ttf}[Path=\detokenize{/Users/salomepoulain/Library/Python/3.9/lib/python/site-packages/matplotlib/mpl-data/fonts/ttf/}]
+%%     \setmonofont{DejaVuSansMono.ttf}[Path=\detokenize{/Users/salomepoulain/Library/Python/3.9/lib/python/site-packages/matplotlib/mpl-data/fonts/ttf/}]
+%%   \fi
+%%   \makeatletter\@ifpackageloaded{underscore}{}{\usepackage[strings]{underscore}}\makeatother
+%%
+\begingroup%
+\makeatletter%
+\begin{pgfpicture}%
+\pgfpathrectangle{\pgfpointorigin}{\pgfqpoint{10.000000in}{10.000000in}}%
+\pgfusepath{use as bounding box, clip}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\definecolor{currentfill}{rgb}{1.000000,1.000000,1.000000}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{1.000000,1.000000,1.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{10.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{10.000000in}{10.000000in}}%
+\pgfpathlineto{\pgfqpoint{0.000000in}{10.000000in}}%
+\pgfpathlineto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathclose%
+\pgfusepath{fill}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{0.041670in}{6.809392in}}{\pgfqpoint{2.825185in}{2.825185in}}%
+\pgfusepath{clip}%
+\pgfsys@transformshift{0.041670in}{6.809392in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=2.830000in,height=2.830000in]{gray_scott_3x3_final_states-img0.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=1.454262in,y=9.717911in,,base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}F=0.140, k=0.045}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{2.950195in}{6.809392in}}{\pgfqpoint{2.825185in}{2.825185in}}%
+\pgfusepath{clip}%
+\pgfsys@transformshift{2.950195in}{6.809392in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=2.830000in,height=2.830000in]{gray_scott_3x3_final_states-img1.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=4.362787in,y=9.717911in,,base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}F=0.140, k=0.055}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{5.858719in}{6.809392in}}{\pgfqpoint{2.825185in}{2.825185in}}%
+\pgfusepath{clip}%
+\pgfsys@transformshift{5.858719in}{6.809392in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=2.830000in,height=2.830000in]{gray_scott_3x3_final_states-img2.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=7.271312in,y=9.717911in,,base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}F=0.140, k=0.065}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{0.041670in}{3.476059in}}{\pgfqpoint{2.825185in}{2.825185in}}%
+\pgfusepath{clip}%
+\pgfsys@transformshift{0.041670in}{3.476059in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=2.830000in,height=2.830000in]{gray_scott_3x3_final_states-img3.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=1.454262in,y=6.384577in,,base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}F=0.085, k=0.045}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{2.950195in}{3.476059in}}{\pgfqpoint{2.825185in}{2.825185in}}%
+\pgfusepath{clip}%
+\pgfsys@transformshift{2.950195in}{3.476059in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=2.830000in,height=2.830000in]{gray_scott_3x3_final_states-img4.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=4.362787in,y=6.384577in,,base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}F=0.085, k=0.055}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{5.858719in}{3.476059in}}{\pgfqpoint{2.825185in}{2.825185in}}%
+\pgfusepath{clip}%
+\pgfsys@transformshift{5.858719in}{3.476059in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=2.830000in,height=2.830000in]{gray_scott_3x3_final_states-img5.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=7.271312in,y=6.384577in,,base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}F=0.085, k=0.065}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{0.041670in}{0.142726in}}{\pgfqpoint{2.825185in}{2.825185in}}%
+\pgfusepath{clip}%
+\pgfsys@transformshift{0.041670in}{0.142726in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=2.830000in,height=2.830000in]{gray_scott_3x3_final_states-img6.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=1.454262in,y=3.051244in,,base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}F=0.030, k=0.045}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{2.950195in}{0.142726in}}{\pgfqpoint{2.825185in}{2.825185in}}%
+\pgfusepath{clip}%
+\pgfsys@transformshift{2.950195in}{0.142726in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=2.830000in,height=2.830000in]{gray_scott_3x3_final_states-img7.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=4.362787in,y=3.051244in,,base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}F=0.030, k=0.055}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{5.858719in}{0.142726in}}{\pgfqpoint{2.825185in}{2.825185in}}%
+\pgfusepath{clip}%
+\pgfsys@transformshift{5.858719in}{0.142726in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=2.830000in,height=2.830000in]{gray_scott_3x3_final_states-img8.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=7.271312in,y=3.051244in,,base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}F=0.030, k=0.065}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\definecolor{currentfill}{rgb}{1.000000,1.000000,1.000000}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{9.029594in}{0.913224in}}%
+\pgfpathlineto{\pgfqpoint{9.427136in}{0.913224in}}%
+\pgfpathlineto{\pgfqpoint{9.427136in}{8.864079in}}%
+\pgfpathlineto{\pgfqpoint{9.029594in}{8.864079in}}%
+\pgfpathlineto{\pgfqpoint{9.029594in}{0.913224in}}%
+\pgfpathclose%
+\pgfusepath{fill}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsys@transformshift{9.030000in}{0.910000in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=0.400000in,height=7.950000in]{gray_scott_3x3_final_states-img9.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetroundjoin%
+\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.803000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetdash{}{0pt}%
+\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{0.000000in}}{\pgfqpoint{0.048611in}{0.000000in}}{%
+\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{0.048611in}{0.000000in}}%
+\pgfusepath{stroke,fill}%
+}%
+\begin{pgfscope}%
+\pgfsys@transformshift{9.427136in}{0.913224in}%
+\pgfsys@useobject{currentmarker}{}%
+\end{pgfscope}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=9.524359in, y=0.818253in, left, base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}0.0}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetroundjoin%
+\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.803000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetdash{}{0pt}%
+\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{0.000000in}}{\pgfqpoint{0.048611in}{0.000000in}}{%
+\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{0.048611in}{0.000000in}}%
+\pgfusepath{stroke,fill}%
+}%
+\begin{pgfscope}%
+\pgfsys@transformshift{9.427136in}{2.503395in}%
+\pgfsys@useobject{currentmarker}{}%
+\end{pgfscope}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=9.524359in, y=2.408424in, left, base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}0.2}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetroundjoin%
+\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.803000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetdash{}{0pt}%
+\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{0.000000in}}{\pgfqpoint{0.048611in}{0.000000in}}{%
+\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{0.048611in}{0.000000in}}%
+\pgfusepath{stroke,fill}%
+}%
+\begin{pgfscope}%
+\pgfsys@transformshift{9.427136in}{4.093566in}%
+\pgfsys@useobject{currentmarker}{}%
+\end{pgfscope}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=9.524359in, y=3.998595in, left, base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}0.4}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetroundjoin%
+\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.803000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetdash{}{0pt}%
+\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{0.000000in}}{\pgfqpoint{0.048611in}{0.000000in}}{%
+\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{0.048611in}{0.000000in}}%
+\pgfusepath{stroke,fill}%
+}%
+\begin{pgfscope}%
+\pgfsys@transformshift{9.427136in}{5.683737in}%
+\pgfsys@useobject{currentmarker}{}%
+\end{pgfscope}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=9.524359in, y=5.588766in, left, base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}0.6}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetroundjoin%
+\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.803000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetdash{}{0pt}%
+\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{0.000000in}}{\pgfqpoint{0.048611in}{0.000000in}}{%
+\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{0.048611in}{0.000000in}}%
+\pgfusepath{stroke,fill}%
+}%
+\begin{pgfscope}%
+\pgfsys@transformshift{9.427136in}{7.273908in}%
+\pgfsys@useobject{currentmarker}{}%
+\end{pgfscope}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=9.524359in, y=7.178937in, left, base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}0.8}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetroundjoin%
+\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.803000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetdash{}{0pt}%
+\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{0.000000in}}{\pgfqpoint{0.048611in}{0.000000in}}{%
+\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{0.048611in}{0.000000in}}%
+\pgfusepath{stroke,fill}%
+}%
+\begin{pgfscope}%
+\pgfsys@transformshift{9.427136in}{8.864079in}%
+\pgfsys@useobject{currentmarker}{}%
+\end{pgfscope}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=9.524359in, y=8.769109in, left, base]{\color{textcolor}{\sffamily\fontsize{18.000000}{21.600000}\selectfont\catcode`\^=\active\def^{\ifmmode\sp\else\^{}\fi}\catcode`\%=\active\def%{\%}1.0}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetrectcap%
+\pgfsetmiterjoin%
+\pgfsetlinewidth{0.803000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{9.029594in}{0.913224in}}%
+\pgfpathlineto{\pgfqpoint{9.228365in}{0.913224in}}%
+\pgfpathlineto{\pgfqpoint{9.427136in}{0.913224in}}%
+\pgfpathlineto{\pgfqpoint{9.427136in}{8.864079in}}%
+\pgfpathlineto{\pgfqpoint{9.228365in}{8.864079in}}%
+\pgfpathlineto{\pgfqpoint{9.029594in}{8.864079in}}%
+\pgfpathlineto{\pgfqpoint{9.029594in}{0.913224in}}%
+\pgfpathclose%
+\pgfusepath{stroke}%
+\end{pgfscope}%
+\end{pgfpicture}%
+\makeatother%
+\endgroup%
